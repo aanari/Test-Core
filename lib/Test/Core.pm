@@ -14,9 +14,6 @@ sub import {
     Data::Dump->import::into($caller);
 
     no strict 'refs';
-    map { *{$caller . "::$_"} = \&{$_} } qw/
-        use_ok
-    /;
     *{$caller . '::MM'}  = \&mock_module;
     *{$caller . '::MO'}  = \&mock_object;
 }
@@ -46,13 +43,6 @@ sub mock_object {
         );
     }
     return $mock_object;
-}
-
-sub use_ok {
-    my ($class, @args) = @_;
-    Module::Load::load $class, @args;
-    Test::Modern::ok Module::Loaded::is_loaded($class),
-        "... Loaded the module: $class";
 }
 
 1;
