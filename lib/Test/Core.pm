@@ -61,4 +61,221 @@ sub mock_object {
 
 Test::Core provides the best testing harness of Modern Perl in a single, user-friendly import. It builds off of L<Test::Modern> while also providing clean interfaces to dumping and mocking facilities from other libraries.
 
+Test::Core also automatically imposes L<strict> and L<warnings> on your script, and loads L<IO::File>. Although Test::Modern is a modern testing framework, it should run fine on pre-modern versions of Perl.
+
+=head1 FUNCTIONS
+
+=head2 Test::More
+
+Test::Core exports the following from L<Test::More>:
+
+=over 4
+
+=item C<< ok($truth, $description) >>
+
+=item C<< is($got, $expected, $description) >>
+
+=item C<< isnt($got, $unexpected, $description) >>
+
+=item C<< like($got, $regexp, $description) >>
+
+=item C<< unlike($got, $regexp, $description) >>
+
+=item C<< is_deeply($got, $expected, $description) >>
+
+=item C<< cmp_ok($got, $operator, $expected, $description) >>
+
+=item C<< new_ok($class, \@args, $name) >>
+
+=item C<< isa_ok($object|$subclass, $class, $name) >>
+
+=item C<< can_ok($object|$class, @methods) >>
+
+=item C<< pass($description) >>
+
+=item C<< fail($description) >>
+
+=item C<< subtest($description, sub { ... }) >>
+
+=item C<< diag(@messages) >>
+
+=item C<< note(@messages) >>
+
+=item C<< explain(@messages) >>
+
+=item C<< skip($why, $count) if $reason >>
+
+=item C<< todo_skip($why, $count) if $reason >>
+
+=item C<< $TODO >>
+
+=item C<< plan(%plan) >>
+
+=item C<< done_testing >>
+
+=item C<< BAIL_OUT($reason) >>
+
 =back
+
+=head2 Test::Fatal
+
+Test::Core exports the following from L<Test::Fatal>:
+
+=over 4
+
+=item C<< exception { BLOCK } >>
+
+=back
+
+=head2 Test::Warnings
+
+Test::Core exports the following from L<Test::Warnings>:
+
+=over 4
+
+=item C<< warning { BLOCK } >>
+
+=item C<< warnings { BLOCK } >>
+
+=back
+
+=head2 Test::API
+
+Test::Core exports the following from L<Test::API>:
+
+=over 4
+
+=item C<< public_ok($package, @functions) >>
+
+=item C<< import_ok($package, export => \@functions, export_ok => \@functions) >>
+
+=item C<< class_api_ok($class, @methods) >>
+
+=back
+
+=head2 Test::LongString
+
+Test::Core exports the following from L<Test::LongString>:
+
+=over
+
+=item C<< is_string($got, $expected, $description) >>
+
+=item C<< is_string_nows($got, $expected, $description) >>
+
+=item C<< like_string($got, $regexp, $description) >>
+
+=item C<< unlike_string($got, $regexp, $description) >>
+
+=item C<< contains_string($haystack, $needle, $description) >>
+
+=item C<< lacks_string($haystack, $needle, $description) >>
+
+=back
+
+=head2 Test::Deep
+
+Test::Core exports the following from L<Test::Deep>:
+
+=over 4
+
+=item C<< cmp_deeply($got, $expected, $description) >>
+
+=item C<< ignore() >>
+
+=item C<< methods(%hash) >>
+
+=item C<< listmethods(%hash) >>
+
+=item C<< shallow($thing) >>
+
+=item C<< noclass($thing) >>
+
+=item C<< useclass($thing) >>
+
+=item C<< re($regexp, $capture_data, $flags) >>
+
+=item C<< superhashof(\%hash) >>
+
+=item C<< subhashof(\%hash) >>
+
+=item C<< bag(@elements) >>
+
+=item C<< set(@elements) >>
+
+=item C<< superbagof(@elements) >>
+
+=item C<< subbagof(@elements) >>
+
+=item C<< supersetof(@elements) >>
+
+=item C<< subsetof(@elements) >>
+
+=item C<< all(@expecteds) >>
+
+=item C<< any(@expecteds) >>
+
+=item C<< obj_isa($class) >>
+
+=item C<< array_each($thing) >>
+
+=item C<< str($string) >>
+
+=item C<< num($number, $tolerance) >>
+
+=item C<< bool($value) >>
+
+=item C<< code(\&subref) >>
+
+=back
+
+=head2 Test::Modern
+
+Test::Core exports the following from L<Test::Modern>:
+
+=over 4
+
+=item C<< does_ok($object|$subclass, $class, $name) >>
+
+=item C<< namespaces_clean(@namespaces) >>
+
+=item C<< is_fastest($implementation, $times, \%implementations, $desc) >>
+
+=item C<< object_ok($object, $name, %tests) >>
+
+=back
+
+=head2 Data::Dump
+
+Test::Core exports the following from L<Data::Dump>:
+
+=over 4
+
+=item C<< dd(@objects) >>
+
+=item C<< ddx(@objects) >>
+
+=back
+
+=head2 Test::Core
+
+Test::Core implements the following mocking functions using L<Sub::Override>, L<Test::MockObject>, and L<Test::MockObjct::Extends>:
+
+=over 4
+
+=item C<< MM($class, %mocks) >>
+
+    # This module is mocked as long as $mock is in scope
+    my $mock = MM('DateTime', year => 1776);
+
+=item C<< MO(%mocks) >>
+
+    # Takes an optional "isa" for extending existing objects
+    my $mock = MO(
+        isa => 'DateTime',
+        now => sub { DateTime->now->add(days => 3) },
+    );
+
+=back
+
+=cut

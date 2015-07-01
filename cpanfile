@@ -8,6 +8,7 @@ requires "Test::Modern" => "0";
 requires "strict" => "0";
 
 on 'test' => sub {
+  requires "DateTime" => "0";
   requires "File::Spec" => "0";
   requires "IO::Handle" => "0";
   requires "IPC::Open3" => "0";
