@@ -59,3 +59,16 @@ sub use_ok {
 
 # ABSTRACT: Modern Perl testing with a single import
 
+=head1 SYNOPSIS
+
+    use Test::Core;
+
+    # Your tests here
+
+    done_testing
+
+=head1 DESCRIPTION
+
+Test::Core provides the best testing harness of Modern Perl in a single, user-friendly import. It builds off of L<Test::Modern> while also providing clean interfaces to dumping and mocking facilities from other libraries.
+
+=back
