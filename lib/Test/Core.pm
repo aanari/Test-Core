@@ -11,12 +11,12 @@ use Test::MockObject::Extends   ();
 sub import {
     my $caller = scalar caller();
     Test::Modern->import::into($caller, qw(-default -deeper !TD));
+    Data::Dump->import::into($caller);
 
     no strict 'refs';
     map { *{$caller . "::$_"} = \&{$_} } qw/
         use_ok
     /;
-    *{$caller . '::dd'}  = \&Data::Dump::dd;
     *{$caller . '::MM'}  = \&mock_module;
     *{$caller . '::MO'}  = \&mock_object;
 }
@@ -34,7 +34,7 @@ sub mock_module {
 }
 
 sub mock_object {
-    my ($class, %mocks) = @_;
+    my (%mocks) = @_;
     my $isa         = delete $mocks{isa};
     my $mock_object = $isa
         ? Test::MockObject::Extends->new($isa)
