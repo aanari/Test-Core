@@ -259,7 +259,7 @@ Test::Core exports the following from L<Data::Dump>:
 
 =head2 Test::Core
 
-Test::Core implements the following mocking functions using L<Sub::Override>, L<Test::MockObject>, and L<Test::MockObjct::Extends>:
+Test::Core implements the following mocking functions using L<Sub::Override>, L<Test::MockObject>, and L<Test::MockObject::Extends>:
 
 =over 4
 
