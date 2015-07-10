@@ -3,8 +3,8 @@ package Test::Core;
 use Data::Dump                  ();
 use Import::Into;
 use Module::Load                ();
-use Sub::Override               ();
 use Test::Modern                ();
+use Test::MockModule            ();
 use Test::MockObject            ();
 use Test::MockObject::Extends   ();
 
@@ -20,10 +20,10 @@ sub import {
 
 sub mock_module {
     my ($class, %mocks) = @_;
-    my $mock_module = Sub::Override->new;
+    my $mock_module = Test::MockModule->new($class);
     while (my ($method, $override) = each(%mocks)) {
-        $mock_module->replace(
-            ($class . '::' . $method),
+        $mock_module->mock(
+            $method,
             ('CODE' eq ref $override ? $override : sub { $override })
         );
     }
@@ -259,7 +259,7 @@ Test::Core exports the following from L<Data::Dump>:
 
 =head2 Test::Core
 
-Test::Core implements the following mocking functions using L<Sub::Override>, L<Test::MockObject>, and L<Test::MockObject::Extends>:
+Test::Core implements the following mocking functions using L<Test::MockModule>, L<Test::MockObject>, and L<Test::MockObject::Extends>:
 
 =over 4
 

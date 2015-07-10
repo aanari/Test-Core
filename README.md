@@ -4,7 +4,7 @@ Test::Core - Modern Perl testing with a single import
 
 # VERSION
 
-version 0.0101
+version 0.0200
 
 # SYNOPSIS
 
@@ -128,7 +128,7 @@ Test::Core exports the following from [Data::Dump](https://metacpan.org/pod/Data
 
 ## Test::Core
 
-Test::Core implements the following mocking functions using [Sub::Override](https://metacpan.org/pod/Sub::Override), [Test::MockObject](https://metacpan.org/pod/Test::MockObject), and [Test::MockObject::Extends](https://metacpan.org/pod/Test::MockObject::Extends):
+Test::Core implements the following mocking functions using [Test::MockModule](https://metacpan.org/pod/Test::MockModule), [Test::MockObject](https://metacpan.org/pod/Test::MockObject), and [Test::MockObject::Extends](https://metacpan.org/pod/Test::MockObject::Extends):
 
 - `MM($class, %mocks)`
 
