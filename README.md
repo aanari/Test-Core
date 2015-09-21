@@ -137,10 +137,10 @@ Test::Core implements the following mocking functions using [Test::MockModule](h
 
 - `MO(%mocks)`
 
-        # Takes an optional "isa" for extending existing objects
+        # Takes an optional "extends" for extending existing objects
         my $mock = MO(
-            isa => 'DateTime',
-            now => sub { DateTime->now->add(days => 3) },
+            extends => 'DateTime',
+            now     => sub { DateTime->now->add(days => 3) },
         );
 
 # BUGS

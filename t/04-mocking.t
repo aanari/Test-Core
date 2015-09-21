@@ -19,4 +19,9 @@ is $mock_dt->year => '1776';
 ok $mock_dt->isa('DateTime');
 ok !$mock_dt->isa('Test::MockObject');
 
+$mock_dt = MO(extends => DateTime->now, year => 1776);
+is $mock_dt->year => '1776';
+ok $mock_dt->isa('DateTime');
+ok !$mock_dt->isa('Test::MockObject');
+
 done_testing;

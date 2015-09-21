@@ -32,7 +32,7 @@ sub mock_module {
 
 sub mock_object {
     my (%mocks) = @_;
-    my $isa         = delete $mocks{isa};
+    my $isa         = delete $mocks{isa} || delete $mocks{extends};
     my $mock_object = $isa
         ? Test::MockObject::Extends->new($isa)
         : Test::MockObject->new;
@@ -270,10 +270,10 @@ Test::Core implements the following mocking functions using L<Test::MockModule>,
 
 =item C<< MO(%mocks) >>
 
-    # Takes an optional "isa" for extending existing objects
+    # Takes an optional "extends" for extending existing objects
     my $mock = MO(
-        isa => 'DateTime',
-        now => sub { DateTime->now->add(days => 3) },
+        extends => 'DateTime',
+        now     => sub { DateTime->now->add(days => 3) },
     );
 
 =back
